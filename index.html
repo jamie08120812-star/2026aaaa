@@ -43,7 +43,7 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 2rem;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         /* 內容區塊動畫 */
@@ -97,6 +97,16 @@
             height: 380px;
             width: 100%;
         }
+
+        /* 標籤樣式 */
+        .badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -129,8 +139,7 @@
                     <div class="avatar-bg-glow"></div>
                     <div class="avatar-frame shadow-2xl">
                         <!-- 【重要：頭像圖片路徑】 -->
-                        <!-- 請將你的頭像圖片命名為 avatar.jpg 並放在與此檔案相同的資料夾內 -->
-                        <img src="avatar.jpg" alt="黃盈箏個人頭像">
+                        <img src="avatar.jpg" alt="黃盈箏個人頭像" onerror="this.src='https://via.placeholder.com/300x300/1e293b/ffffff?text=YZ'">
                     </div>
                 </div>
                 <div class="text-center md:text-left">
@@ -209,36 +218,83 @@
 
         <!-- 頁面 4: 相關工作介紹 -->
         <section id="jobs" class="page-content">
-            <h2 class="text-4xl font-black text-white mb-12">相關工作推薦 <span class="text-blue-500 text-2xl font-light ml-4">Careers</span></h2>
-            <div class="glass-card overflow-hidden">
-                <table class="w-full text-left">
-                    <thead class="bg-white/5 border-b border-white/10">
-                        <tr>
-                            <th class="px-10 py-6 text-xs font-bold text-blue-400 uppercase tracking-widest">目標職位</th>
-                            <th class="px-10 py-6 text-xs font-bold text-blue-400 uppercase tracking-widest">職能與何倫碼關聯</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-slate-400 text-sm">
-                        <tr class="border-b border-white/5 hover:bg-white/5 transition">
-                            <td class="px-10 py-8">
-                                <span class="text-white font-bold block text-lg mb-1">前端工程師 / 網頁設計</span>
-                                <span class="text-xs text-slate-500 mono">Frontend Developer</span>
-                            </td>
-                            <td class="px-10 py-8 leading-relaxed">
-                                對接 <b>A (藝術型)</b> 的美感表達與 <b>C (事務型)</b> 對代碼規範的堅持。
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-white/5 transition">
-                            <td class="px-10 py-8">
-                                <span class="text-white font-bold block text-lg mb-1">資訊系統維運人員</span>
-                                <span class="text-xs text-slate-500 mono">IT System Specialist</span>
-                            </td>
-                            <td class="px-10 py-8 leading-relaxed">
-                                運用 <b>C (事務型)</b> 的謹慎負責進行故障排除與日常維護。
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <h2 class="text-4xl font-black text-white mb-6">相關工作推薦</h2>
+            <p class="text-blue-500 font-bold mono text-sm mb-12 uppercase tracking-widest">// Career Opportunities & Requirements</p>
+            
+            <div class="grid gap-8">
+                <!-- 職位 1: 前端工程師 -->
+                <div class="glass-card p-10 hover:border-blue-500/50">
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
+                        <div>
+                            <span class="badge mb-4 inline-block">C (事務) + A (藝術)</span>
+                            <h3 class="text-3xl font-black text-white mb-2">前端工程師 / 網頁 UI 設計</h3>
+                            <p class="text-blue-400 mono text-sm font-medium">Frontend Developer & UI Designer</p>
+                        </div>
+                        <div class="text-left md:text-right">
+                            <p class="text-slate-500 text-xs uppercase tracking-widest mb-1">昇晉整合服務有限公司</p>
+                            <p class="text-white font-bold">電腦系統整合服務業、資訊服務業</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-10 border-t border-white/5 pt-8">
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">職務內容描述</h4>
+                            <ul class="space-y-3 text-slate-400 text-sm">
+                                <li class="flex gap-2"><span>•</span> 負責網站開發及維護，設計及優化網頁使用者介面。</li>
+                                <li class="flex gap-2"><span>•</span> 與後端團隊合作，共同參與需求規劃討論，製作功能列表、流程圖、API設計。</li>
+                                <li class="flex gap-2"><span>•</span> 善用 AI 工具輔助開發，提高開發效率與程式品質（如程式碼生成、除錯、文件撰寫等）。</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">工作需求技能</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">HTML5 / CSS3</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">JavaScript (ES6+)</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">Tailwind CSS</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">Figma / Adobe XD</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">Git 版本控制</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 職位 2: 資訊系統維運人員 -->
+                <div class="glass-card p-10 hover:border-purple-500/50">
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
+                        <div>
+                            <span class="badge mb-4 inline-block" style="color:#a855f7; background:rgba(168,85,247,0.1)">C (事務型) 強烈對接</span>
+                            <h3 class="text-3xl font-black text-white mb-2">資訊系統維運工程師</h3>
+                            <p class="text-purple-400 mono text-sm font-medium">IT System Operation Specialist</p>
+                        </div>
+                        <div class="text-left md:text-right">
+                            <p class="text-slate-500 text-xs uppercase tracking-widest mb-1">先勁健康科技股份有限公司</p>
+                            <p class="text-white font-bold">
+                            
+                            醫療健康資訊業、電腦軟體服務業</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-10 border-t border-white/5 pt-8">
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">職務內容描述</h4>
+                            <ul class="space-y-3 text-slate-400 text-sm">
+                                <li class="flex gap-2"><span>•</span> 負責資訊系統軟、硬體及網路設備之安裝、設定、維護與故障排除。</li>
+                                <li class="flex gap-2"><span>•</span> 執行系統維運作業，包括環境建置、調整與更新。</li>
+                                <li class="flex gap-2"><span>•</span> 外勤服務：至客戶或內部現場進行系統檢測、維護與問題排除。</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">工作需求技能</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">Linux / Windows Server</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">網路通訊協定 (TCP/IP)</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">Shell Scripting</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">虛擬化技術 (VMware)</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">資料庫基礎操作</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -253,23 +309,21 @@
     <script>
         // 切換頁面邏輯
         function switchTab(targetId) {
-            // 隱藏所有區塊
             const pages = document.querySelectorAll('.page-content');
             pages.forEach(p => p.classList.remove('active'));
 
-            // 顯示目標區塊
             const targetPage = document.getElementById(targetId);
             targetPage.classList.add('active');
 
-            // 更新按鈕樣式
             const buttons = document.querySelectorAll('.nav-btn');
-            buttons.forEach(b => b.classList.replace('text-white', 'text-slate-400'));
+            buttons.forEach(b => {
+                b.classList.remove('text-white');
+                b.classList.add('text-slate-400');
+            });
             document.getElementById('btn-' + targetId).classList.replace('text-slate-400', 'text-white');
 
-            // 滾動回頂端
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // 若切換到測驗頁面，啟動圖表動畫
             if(targetId === 'test') {
                 initRadarChart();
             }
@@ -278,9 +332,10 @@
         // 初始化 Chart.js 雷達圖
         let radarChartInstance = null;
         function initRadarChart() {
-            const ctx = document.getElementById('radarChart').getContext('2d');
+            const canvas = document.getElementById('radarChart');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
             
-            // 若已存在圖表則銷毀重製，確保動畫重新播放
             if (radarChartInstance) {
                 radarChartInstance.destroy();
             }
@@ -291,7 +346,6 @@
                     labels: ['R 實作型', 'I 研究型', 'A 藝術型', 'S 社會型', 'E 企業型', 'C 事務型'],
                     datasets: [{
                         label: 'Holland 興趣指標',
-                        // 數值參考截圖形狀：C 與 A 為頂點
                         data: [6, 4, 9, 3, 2, 10], 
                         backgroundColor: 'rgba(59, 130, 246, 0.25)',
                         borderColor: '#3b82f6',
@@ -326,7 +380,6 @@
             });
         }
 
-        // 初次載入
         window.onload = function() {
             initRadarChart();
         };
