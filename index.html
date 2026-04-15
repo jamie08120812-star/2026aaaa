@@ -14,11 +14,12 @@
             background-color: #020617; 
             color: #e2e8f0; 
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         /* 導覽列模糊特效 */
         nav {
-            background: rgba(2, 6, 23, 0.8);
+            background: rgba(2, 6, 23, 0.85);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -26,23 +27,23 @@
         /* 背景流動光暈 */
         .glow {
             position: fixed;
-            width: 600px;
-            height: 600px;
-            filter: blur(140px);
+            width: 40vw;
+            height: 40vw;
+            filter: blur(100px);
             border-radius: 50%;
             z-index: -1;
             opacity: 0.15;
             pointer-events: none;
         }
-        .glow-1 { background: #3b82f6; top: -150px; right: -150px; }
-        .glow-2 { background: #a855f7; bottom: -150px; left: -150px; }
+        .glow-1 { background: #3b82f6; top: -10%; right: -10%; }
+        .glow-2 { background: #a855f7; bottom: -10%; left: -10%; }
 
         /* 玻璃擬態卡片設計 */
         .glass-card {
             background: rgba(15, 23, 42, 0.4);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 2rem;
+            border-radius: 1.5rem;
             transition: all 0.3s ease;
         }
 
@@ -60,11 +61,17 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 頭像裝飾框 */
+        /* 頭像裝飾框 - RWD 調整 */
         .avatar-container {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 240px;
+            height: 240px;
+        }
+        @media (min-width: 768px) {
+            .avatar-container {
+                width: 300px;
+                height: 300px;
+            }
         }
         .avatar-frame {
             position: relative;
@@ -94,8 +101,11 @@
 
         .chart-wrapper {
             position: relative;
-            height: 380px;
+            height: 300px;
             width: 100%;
+        }
+        @media (min-width: 768px) {
+            .chart-wrapper { height: 380px; }
         }
 
         /* 標籤樣式 */
@@ -126,6 +136,15 @@
             background: #3b82f6;
             box-shadow: 0 0 10px #3b82f6;
         }
+
+        /* 行動版選單動畫 */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateY(-100%);
+        }
+        #mobile-menu.open {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -136,25 +155,41 @@
 
     <!-- 全域導覽列 -->
     <nav class="fixed top-0 w-full z-50">
-        <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="mono text-sm font-bold tracking-widest">
-                <span class="text-blue-500">HUANG</span>_YZ <span class="text-slate-600">| 411303075</span>
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="mono text-xs md:text-sm font-bold tracking-widest">
+                <span class="text-blue-500">HUANG</span>_YZ <span class="hidden sm:inline text-slate-600">| 411303075</span>
             </div>
-            <div class="flex space-x-8 text-[11px] font-bold tracking-[0.2em] uppercase">
+            
+            <!-- 桌機選單 -->
+            <div class="hidden md:flex space-x-8 text-[11px] font-bold tracking-[0.2em] uppercase">
                 <button onclick="switchTab('home')" class="nav-btn text-white transition hover:text-blue-400" id="btn-home">Home</button>
                 <button onclick="switchTab('test')" class="nav-btn text-slate-400 transition hover:text-blue-400" id="btn-test">測驗結果</button>
                 <button onclick="switchTab('mis')" class="nav-btn text-slate-400 transition hover:text-blue-400" id="btn-mis">MIS工作分析</button>
                 <button onclick="switchTab('jobs')" class="nav-btn text-slate-400 transition hover:text-blue-400" id="btn-jobs">相關工作</button>
             </div>
+
+            <!-- 行動版漢堡按鈕 -->
+            <button class="md:hidden text-white p-2" onclick="toggleMenu()">
+                <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+
+        <!-- 行動版下拉選單 -->
+        <div id="mobile-menu" class="fixed top-0 left-0 w-full bg-slate-900/95 backdrop-blur-xl md:hidden z-[-1] border-b border-white/10 pt-20 pb-8 px-6 shadow-2xl">
+            <div class="flex flex-col space-y-6 text-center text-xs font-bold tracking-widest uppercase">
+                <button onclick="switchTab('home'); toggleMenu()" class="mob-nav-btn text-white">Home</button>
+                <button onclick="switchTab('test'); toggleMenu()" class="mob-nav-btn text-slate-400">測驗結果</button>
+                <button onclick="switchTab('mis'); toggleMenu()" class="mob-nav-btn text-slate-400">MIS工作分析</button>
+                <button onclick="switchTab('jobs'); toggleMenu()" class="mob-nav-btn text-slate-400">相關工作</button>
+            </div>
         </div>
     </nav>
 
-    <main class="pt-32 pb-24 max-w-5xl mx-auto px-8">
+    <main class="pt-24 md:pt-32 pb-24 max-w-5xl mx-auto px-6 md:px-8">
 
-        <!-- 頁面 1: 首頁 (個人介紹 + 經歷與興趣) -->
+        <!-- 頁面 1: 首頁 -->
         <section id="home" class="page-content active">
-            <!-- 個人基本介紹 -->
-            <div class="flex flex-col md:flex-row items-center gap-16 mb-24">
+            <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 mb-20">
                 <div class="avatar-container flex-shrink-0">
                     <div class="avatar-bg-glow"></div>
                     <div class="avatar-frame shadow-2xl">
@@ -162,72 +197,70 @@
                     </div>
                 </div>
                 <div class="text-center md:text-left">
-                    <p class="mono text-blue-500 text-xs font-bold tracking-[0.4em] mb-4 uppercase">// Personal Identity</p>
-                    <h1 class="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter">黃盈箏</h1>
-                    <h2 class="text-2xl font-light text-slate-400 mb-8">靜宜大學 資管二B | 411303075</h2>
-                    <p class="text-slate-500 leading-loose max-w-lg text-lg">
+                    <p class="mono text-blue-500 text-[10px] md:text-xs font-bold tracking-[0.4em] mb-4 uppercase">// Personal Identity</p>
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tighter">黃盈箏</h1>
+                    <h2 class="text-xl md:text-2xl font-light text-slate-400 mb-6">靜宜大學 資管二B | 411303075</h2>
+                    <p class="text-slate-500 leading-loose max-w-lg text-base md:text-lg">
                         一名專注於「事務邏輯」與「視覺想像」整合的資管學生。具備事務型 (C) 的細膩與藝術型 (A) 的想像力。
                     </p>
                 </div>
             </div>
 
-            <!-- 區塊：個人經歷與興趣愛好 -->
             <div class="grid md:grid-cols-2 gap-12">
-                <!-- 個人經歷 (時間軸) -->
+                <!-- 個人經歷 -->
                 <div>
-                    <h3 class="text-2xl font-black text-white mb-8 flex items-center gap-3">
+                    <h3 class="text-xl md:text-2xl font-black text-white mb-8 flex items-center gap-3">
                         <span class="text-blue-500">/</span> 個人經歷
                     </h3>
                     <div class="ml-2">
                         <div class="timeline-item">
-                            <span class="text-xs font-bold text-blue-400 mono tracking-widest uppercase">大學時期</span>
+                            <span class="text-[10px] font-bold text-blue-400 mono tracking-widest uppercase">大學時期</span>
                             <h4 class="text-lg font-bold text-white mt-1">空手道社 副社長</h4>
                             <p class="text-slate-500 text-sm mt-1">積極參與社團運作，負責規劃社團活動與推廣空手道運動。</p>
                         </div>
                         <div class="timeline-item">
-                            <span class="text-xs font-bold text-slate-500 mono tracking-widest uppercase">國中時期</span>
+                            <span class="text-[10px] font-bold text-slate-500 mono tracking-widest uppercase">國中時期</span>
                             <h4 class="text-lg font-bold text-white mt-1">籃球校隊 & 副班長</h4>
                             <p class="text-slate-500 text-sm mt-1">曾獲籃球縣長盃第二名佳績；同時擔任副班長協助班級事務，培養領導力。</p>
                         </div>
-                        <div class="timeline-item border-none">
-                            <span class="text-xs font-bold text-slate-500 mono tracking-widest uppercase">國小時期</span>
+                        <div class="timeline-item border-none pb-0">
+                            <span class="text-[10px] font-bold text-slate-500 mono tracking-widest uppercase">國小時期</span>
                             <h4 class="text-lg font-bold text-white mt-1">美術專班</h4>
                             <p class="text-slate-500 text-sm mt-1">從小接受美術專業教育，奠定對於美學的敏銳度與視覺感受力。</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- 興趣愛好 (卡片) -->
+                <!-- 興趣愛好 -->
                 <div>
-                    <h3 class="text-2xl font-black text-white mb-8 flex items-center gap-3">
+                    <h3 class="text-xl md:text-2xl font-black text-white mb-8 flex items-center gap-3">
                         <span class="text-blue-500">/</span> 興趣愛好
                     </h3>
                     <div class="grid gap-4">
-                        <!-- 空手道項目 -->
-                        <div class="glass-card p-6 flex items-center gap-6 group hover:bg-red-500/10 hover:border-red-500/30 transition">
-                            <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-500 text-2xl group-hover:scale-110 transition">
+                        <div class="glass-card p-5 flex items-center gap-5 group hover:bg-red-500/10 hover:border-red-500/30 transition">
+                            <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-500 text-2xl group-hover:scale-110 transition shrink-0">
                                 🥋
                             </div>
                             <div>
-                                <h4 class="text-white font-bold">空手道 Karate</h4>
+                                <h4 class="text-white font-bold text-sm md:text-base">空手道 Karate</h4>
                                 <p class="text-slate-500 text-xs">修練武道不僅是體能挑戰，更是意志的磨練與自律的實踐。</p>
                             </div>
                         </div>
-                        <div class="glass-card p-6 flex items-center gap-6 group hover:bg-blue-500/10 hover:border-blue-500/30 transition">
-                            <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 text-2xl group-hover:scale-110 transition">
+                        <div class="glass-card p-5 flex items-center gap-5 group hover:bg-blue-500/10 hover:border-blue-500/30 transition">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 text-2xl group-hover:scale-110 transition shrink-0">
                                 🏀
                             </div>
                             <div>
-                                <h4 class="text-white font-bold">球類運動</h4>
+                                <h4 class="text-white font-bold text-sm md:text-base">球類運動</h4>
                                 <p class="text-slate-500 text-xs">熱愛籃球，享受場上團隊競爭與合作的快感。</p>
                             </div>
                         </div>
-                        <div class="glass-card p-6 flex items-center gap-6 group hover:bg-purple-500/10 hover:border-purple-500/30 transition">
-                            <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-purple-400 text-2xl group-hover:scale-110 transition">
+                        <div class="glass-card p-5 flex items-center gap-5 group hover:bg-purple-500/10 hover:border-purple-500/30 transition">
+                            <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-purple-400 text-2xl group-hover:scale-110 transition shrink-0">
                                 🎨
                             </div>
                             <div>
-                                <h4 class="text-white font-bold">藝術繪畫</h4>
+                                <h4 class="text-white font-bold text-sm md:text-base">藝術繪畫</h4>
                                 <p class="text-slate-500 text-xs">藉由繪畫抒發感受，將生活靈感轉化為視覺圖像。</p>
                             </div>
                         </div>
@@ -236,37 +269,37 @@
             </div>
         </section>
 
-        <!-- 頁面 2: 測驗結果 (何倫碼雷達圖) - 恢復詳細版 -->
+        <!-- 頁面 2: 測驗結果 -->
         <section id="test" class="page-content">
-            <h2 class="text-4xl font-black text-white mb-4">測驗結果分析</h2>
-            <p class="text-blue-500 font-bold mono text-sm mb-12 uppercase tracking-widest">// Holland Code: C x A</p>
+            <h2 class="text-3xl md:text-4xl font-black text-white mb-4">測驗結果分析</h2>
+            <p class="text-blue-500 font-bold mono text-xs md:text-sm mb-10 uppercase tracking-widest">// Holland Code: C x A</p>
             
-            <div class="grid lg:grid-cols-2 gap-10 items-start">
-                <div class="glass-card p-10 flex flex-col items-center">
-                    <h3 class="text-xs font-bold text-slate-400 tracking-widest uppercase mb-8 self-start">興趣何倫碼雷達圖</h3>
+            <div class="grid lg:grid-cols-2 gap-8 items-start">
+                <div class="glass-card p-6 md:p-10 flex flex-col items-center">
+                    <h3 class="text-[10px] font-bold text-slate-400 tracking-widest uppercase mb-8 self-start">興趣何倫碼雷達圖</h3>
                     <div class="chart-wrapper">
                         <canvas id="radarChart"></canvas>
                     </div>
-                    <p class="mt-6 text-xs text-slate-500 italic">※ 數值依據測驗截圖之分佈比例呈現</p>
+                    <p class="mt-6 text-[10px] text-slate-500 italic">※ 數值依據測驗截圖之分佈比例呈現</p>
                 </div>
 
                 <div class="space-y-8">
-                    <div class="glass-card p-10">
-                        <h3 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-6">核心特質解析</h3>
-                        <p class="text-xl font-bold text-white mb-6 leading-relaxed">
+                    <div class="glass-card p-8 md:p-10">
+                        <h3 class="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-6">核心特質解析</h3>
+                        <p class="text-lg md:text-xl font-bold text-white mb-6 leading-relaxed">
                             「個性謹慎，認真負責，同時也具有感性和想像力。」
                         </p>
                         <ul class="space-y-5 text-slate-400 text-sm leading-relaxed">
                             <li class="flex items-start gap-3">
-                                <span class="text-blue-500 mt-1">●</span>
+                                <span class="text-blue-500 mt-1 shrink-0">●</span>
                                 <span><b>按部就班：</b> 處理細節有秩序，能有效率地在規範內完成工作。</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="text-purple-500 mt-1">●</span>
+                                <span class="text-purple-500 mt-1 shrink-0">●</span>
                                 <span><b>表達特質：</b> 直覺敏銳，能運用文字、色彩等方法表達自己。</span>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="text-white mt-1">●</span>
+                                <span class="text-white mt-1 shrink-0">●</span>
                                 <span><b>多樣性發展：</b> 適合既需要精密邏輯，又需要感性設計的工作環境。</span>
                             </li>
                         </ul>
@@ -275,119 +308,122 @@
             </div>
         </section>
 
-        <!-- 頁面 3: MIS 工作分析 - 恢復詳細版 -->
+        <!-- 頁面 3: MIS 工作分析 -->
         <section id="mis" class="page-content">
-            <h2 class="text-4xl font-black text-white mb-12">MIS 工作分析 <span class="text-blue-500 text-2xl font-light ml-4">Analysis</span></h2>
-            <div class="glass-card p-10 mb-10">
-                <h3 class="text-xl font-bold text-white mb-6">自傳與適職性</h3>
-                <p class="text-slate-400 leading-loose mb-6">
+            <h2 class="text-3xl md:text-4xl font-black text-white mb-10">MIS 工作分析 <span class="text-blue-500 text-xl md:text-2xl font-light ml-2">Analysis</span></h2>
+            <div class="glass-card p-8 md:p-10 mb-8">
+                <h3 class="text-lg md:text-xl font-bold text-white mb-6">自傳與適職性</h3>
+                <p class="text-slate-400 leading-relaxed mb-6 text-sm md:text-base">
                     就讀資管系期間，我發現自己在「事務型」任務中感到自在，這反映在對系統配置與維運流程的執著。我不僅能處理細節，更能透過感性的「藝術型」思維，去理解使用者在操作系統時的真實感受。
                 </p>
-                <p class="text-slate-400 leading-loose">
+                <p class="text-slate-400 leading-relaxed text-sm md:text-base">
                     雖然目前在「網路系統規劃」領域尚待加強，但我相信這只是現階段的知識缺口。透過嚴謹的自我進修與實務操作，我能將「執行力」提升為「規劃力」。
                 </p>
             </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass-card p-8 border-l-4 border-l-blue-500">
-                    <h4 class="font-bold text-white mb-2 text-sm uppercase">優勢對接</h4>
-                    <p class="text-slate-500 text-xs">具備中等強度的維運與分析職能，對系統安裝與故障排除極具信心。</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 border-l-4 border-l-blue-500">
+                    <h4 class="font-bold text-white mb-2 text-xs uppercase tracking-wider">優勢對接</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">具備中等強度的維運與分析職能，對系統安裝與故障排除極具信心。</p>
                 </div>
-                <div class="glass-card p-8 border-l-4 border-l-purple-500">
-                    <h4 class="font-bold text-white mb-2 text-sm uppercase">未來精進</h4>
-                    <p class="text-slate-500 text-xs">目標在一年內掌握網路拓樸設計與資安防護策略，補足規劃能力的不足。</p>
+                <div class="glass-card p-6 border-l-4 border-l-purple-500">
+                    <h4 class="font-bold text-white mb-2 text-xs uppercase tracking-wider">未來精進</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">目標在一年內掌握網路拓樸設計與資安防護策略，補足規劃能力的不足。</p>
                 </div>
             </div>
         </section>
 
-        <!-- 頁面 4: 相關工作介紹 - 恢復詳細版 -->
+        <!-- 頁面 4: 相關工作介紹 -->
         <section id="jobs" class="page-content">
-            <h2 class="text-4xl font-black text-white mb-6">相關工作推薦</h2>
-            <p class="text-blue-500 font-bold mono text-sm mb-12 uppercase tracking-widest">// Career Opportunities & Requirements</p>
+            <h2 class="text-3xl md:text-4xl font-black text-white mb-4">相關工作推薦</h2>
+            <p class="text-blue-500 font-bold mono text-xs md:text-sm mb-10 uppercase tracking-widest">// Career Opportunities & Requirements</p>
             
             <div class="grid gap-8">
                 <!-- 職位 1: 前端工程師 -->
-                <div class="glass-card p-10 hover:border-blue-500/50">
+                <div class="glass-card p-6 md:p-10 hover:border-blue-500/50">
                     <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
                         <div>
                             <span class="badge mb-4 inline-block">C (事務) + A (藝術)</span>
-                            <h3 class="text-3xl font-black text-white mb-2">前端工程師 / 網頁 UI 設計</h3>
-                            <p class="text-blue-400 mono text-sm font-medium">Frontend Developer & UI Designer</p>
+                            <h3 class="text-2xl md:text-3xl font-black text-white mb-2">前端工程師 / 網頁 UI 設計</h3>
+                            <p class="text-blue-400 mono text-xs md:text-sm font-medium">Frontend Developer & UI Designer</p>
                         </div>
                         <div class="text-left md:text-right">
-                            <p class="text-slate-500 text-xs uppercase tracking-widest mb-1">昇晉整合服務有限公司</p>
-                            <p class="text-white font-bold">電腦系統整合服務業、資訊服務業</p>
+                            <p class="text-slate-500 text-[10px] uppercase tracking-widest mb-1">昇晉整合服務有限公司</p>
+                            <p class="text-white font-bold text-sm md:text-base">電腦系統整合服務業、資訊服務業</p>
                         </div>
                     </div>
                     
-                    <div class="grid md:grid-cols-2 gap-10 border-t border-white/5 pt-8">
+                    <div class="grid md:grid-cols-2 gap-8 border-t border-white/5 pt-8">
                         <div>
-                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">職務內容描述</h4>
-                            <ul class="space-y-3 text-slate-400 text-sm">
+                            <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">職務內容描述</h4>
+                            <ul class="space-y-3 text-slate-400 text-xs md:text-sm">
                                 <li class="flex gap-2"><span>•</span> 負責網站開發及維護，設計及優化網頁使用者介面。</li>
-                                <li class="flex gap-2"><span>•</span> 與後端團隊合作，共同參與需求規劃討論，製作功能列表、流程圖、API設計。</li>
-                                <li class="flex gap-2"><span>•</span> 善用 AI 工具輔助開發，提高開發效率與程式品質（如程式碼生成、除錯、文件撰寫等）。</li>
+                                <li class="flex gap-2"><span>•</span> 與後端團隊合作，共同參與需求規劃討論。</li>
+                                <li class="flex gap-2"><span>•</span> 善用 AI 工具輔助開發，提高開發效率。</li>
                             </ul>
                         </div>
                         <div>
-                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">工作需求技能</h4>
+                            <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">工作需求技能</h4>
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">HTML5 / CSS3</span>
-                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">JavaScript (ES6+)</span>
-                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">Tailwind CSS</span>
-                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">Figma / Adobe XD</span>
-                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">Git 版本控制</span>
+                                <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-slate-300">HTML5 / CSS3</span>
+                                <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-slate-300">JavaScript</span>
+                                <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-slate-300">Tailwind CSS</span>
+                                <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-slate-300">Figma</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- 職位 2: 資訊系統維運人員 -->
-                <div class="glass-card p-10 hover:border-purple-500/50">
+                <div class="glass-card p-6 md:p-10 hover:border-purple-500/50">
                     <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
                         <div>
                             <span class="badge mb-4 inline-block" style="color:#a855f7; background:rgba(168,85,247,0.1)">C (事務型) 強烈對接</span>
-                            <h3 class="text-3xl font-black text-white mb-2">資訊系統維運工程師</h3>
-                            <p class="text-purple-400 mono text-sm font-medium">IT System Operation Specialist</p>
+                            <h3 class="text-2xl md:text-3xl font-black text-white mb-2">資訊系統維運工程師</h3>
+                            <p class="text-purple-400 mono text-xs md:text-sm font-medium">IT System Operation Specialist</p>
                         </div>
                         <div class="text-left md:text-right">
-                            <p class="text-slate-500 text-xs uppercase tracking-widest mb-1">先勁健康科技股份有限公司</p>
-                            <p class="text-white font-bold">醫療健康資訊業、電腦軟體服務業</p>
+                            <p class="text-slate-500 text-[10px] uppercase tracking-widest mb-1">先勁健康科技股份有限公司</p>
+                            <p class="text-white font-bold text-sm md:text-base">醫療健康資訊業、電腦軟體服務業</p>
                         </div>
                     </div>
                     
-                    <div class="grid md:grid-cols-2 gap-10 border-t border-white/5 pt-8">
+                    <div class="grid md:grid-cols-2 gap-8 border-t border-white/5 pt-8">
                         <div>
-                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">職務內容描述</h4>
-                            <ul class="space-y-3 text-slate-400 text-sm">
-                                <li class="flex gap-2"><span>•</span> 負責資訊系統軟、硬體及網路設備之安裝、設定、維護與故障排除。</li>
-                                <li class="flex gap-2"><span>•</span> 執行系統維運作業，包括環境建置、調整與更新。</li>
-                                <li class="flex gap-2"><span>•</span> 外勤服務：至客戶或內部現場進行系統檢測、維護與問題排除。</li>
+                            <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">職務內容描述</h4>
+                            <ul class="space-y-3 text-slate-400 text-xs md:text-sm">
+                                <li class="flex gap-2"><span>•</span> 負責資訊系統軟硬體安裝、維護與故障排除。</li>
+                                <li class="flex gap-2"><span>•</span> 執行環境建置、調整與更新。</li>
+                                <li class="flex gap-2"><span>•</span> 客戶現場技術支援與問題排除。</li>
                             </ul>
                         </div>
                         <div>
-                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">工作需求技能</h4>
+                            <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">工作需求技能</h4>
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">Linux / Windows Server</span>
-                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">網路通訊協定 (TCP/IP)</span>
-                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">Shell Scripting</span>
-                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">虛擬化技術 (VMware)</span>
-                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-slate-300">資料庫基礎操作</span>
+                                <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-slate-300">Linux / Win Server</span>
+                                <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-slate-300">TCP/IP</span>
+                                <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-slate-300">Shell Scripting</span>
+                                <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-slate-300">VMware</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <footer class="py-16 border-t border-white/5 text-center">
-        <p class="mono text-[10px] tracking-[0.3em] text-slate-600 uppercase">
+    <footer class="py-12 border-t border-white/5 text-center px-6">
+        <p class="mono text-[9px] md:text-[10px] tracking-[0.3em] text-slate-600 uppercase">
             Designed for Portfolio // Huang Ying-Zheng // 411303075
         </p>
     </footer>
 
     <script>
+        // 行動版選單開關
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('open');
+        }
+
         // 切換頁面邏輯
         function switchTab(targetId) {
             const pages = document.querySelectorAll('.page-content');
@@ -396,17 +432,19 @@
             const targetPage = document.getElementById(targetId);
             targetPage.classList.add('active');
 
-            const buttons = document.querySelectorAll('.nav-btn');
-            buttons.forEach(b => {
+            // 更新導覽按鈕顏色
+            const desktopButtons = document.querySelectorAll('.nav-btn');
+            desktopButtons.forEach(b => {
                 b.classList.remove('text-white');
                 b.classList.add('text-slate-400');
             });
-            document.getElementById('btn-' + targetId).classList.replace('text-slate-400', 'text-white');
+            const activeBtn = document.getElementById('btn-' + targetId);
+            if(activeBtn) activeBtn.classList.replace('text-slate-400', 'text-white');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if(targetId === 'test') {
-                initRadarChart();
+                setTimeout(initRadarChart, 100);
             }
         }
 
@@ -428,13 +466,12 @@
                     datasets: [{
                         label: 'Holland 興趣指標',
                         data: [6, 4, 9, 3, 2, 10], 
-                        backgroundColor: 'rgba(59, 130, 246, 0.25)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
                         borderColor: '#3b82f6',
                         borderWidth: 2,
                         pointBackgroundColor: '#a855f7',
                         pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: '#3b82f6',
+                        pointRadius: 4,
                         tension: 0.1
                     }]
                 },
@@ -443,11 +480,11 @@
                     maintainAspectRatio: false,
                     scales: {
                         r: {
-                            angleLines: { color: 'rgba(255,255,255,0.05)' },
-                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            angleLines: { color: 'rgba(255,255,255,0.1)' },
+                            grid: { color: 'rgba(255,255,255,0.1)' },
                             pointLabels: {
                                 color: '#94a3b8',
-                                font: { size: 14, weight: '700', family: 'Noto Sans TC' }
+                                font: { size: 12, weight: '700', family: 'Noto Sans TC' }
                             },
                             ticks: { display: false, stepSize: 2 },
                             suggestedMin: 0,
@@ -463,8 +500,13 @@
 
         window.onload = function() {
             initRadarChart();
+            // 監控視窗縮放以重繪圖表
+            window.addEventListener('resize', () => {
+                if(document.getElementById('test').classList.contains('active')) {
+                    initRadarChart();
+                }
+            });
         };
     </script>
-
 </body>
 </html>
