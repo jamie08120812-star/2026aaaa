@@ -107,6 +107,25 @@
             font-size: 0.75rem;
             font-weight: 600;
         }
+
+        /* 時間軸樣式 */
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid rgba(59, 130, 246, 0.2);
+            padding-bottom: 2rem;
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3b82f6;
+            box-shadow: 0 0 10px #3b82f6;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -132,13 +151,13 @@
 
     <main class="pt-32 pb-24 max-w-5xl mx-auto px-8">
 
-        <!-- 頁面 1: 首頁 (個人介紹) -->
+        <!-- 頁面 1: 首頁 (個人介紹 + 經歷與興趣) -->
         <section id="home" class="page-content active">
-            <div class="flex flex-col md:flex-row items-center gap-16">
+            <!-- 個人基本介紹 -->
+            <div class="flex flex-col md:flex-row items-center gap-16 mb-24">
                 <div class="avatar-container flex-shrink-0">
                     <div class="avatar-bg-glow"></div>
                     <div class="avatar-frame shadow-2xl">
-                        <!-- 【重要：頭像圖片路徑】 -->
                         <img src="avatar.jpg" alt="黃盈箏個人頭像" onerror="this.src='https://via.placeholder.com/300x300/1e293b/ffffff?text=YZ'">
                     </div>
                 </div>
@@ -151,9 +170,73 @@
                     </p>
                 </div>
             </div>
+
+            <!-- 區塊：個人經歷與興趣愛好 -->
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- 個人經歷 (時間軸) -->
+                <div>
+                    <h3 class="text-2xl font-black text-white mb-8 flex items-center gap-3">
+                        <span class="text-blue-500">/</span> 個人經歷
+                    </h3>
+                    <div class="ml-2">
+                        <div class="timeline-item">
+                            <span class="text-xs font-bold text-blue-400 mono tracking-widest uppercase">大學時期</span>
+                            <h4 class="text-lg font-bold text-white mt-1">空手道社 副社長</h4>
+                            <p class="text-slate-500 text-sm mt-1">積極參與社團運作，負責規劃社團活動與推廣空手道運動。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="text-xs font-bold text-slate-500 mono tracking-widest uppercase">國中時期</span>
+                            <h4 class="text-lg font-bold text-white mt-1">籃球校隊 & 副班長</h4>
+                            <p class="text-slate-500 text-sm mt-1">曾獲籃球縣長盃第二名佳績；同時擔任副班長協助班級事務，培養領導力。</p>
+                        </div>
+                        <div class="timeline-item border-none">
+                            <span class="text-xs font-bold text-slate-500 mono tracking-widest uppercase">國小時期</span>
+                            <h4 class="text-lg font-bold text-white mt-1">美術專班</h4>
+                            <p class="text-slate-500 text-sm mt-1">從小接受美術專業教育，奠定對於美學的敏銳度與視覺感受力。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 興趣愛好 (卡片) -->
+                <div>
+                    <h3 class="text-2xl font-black text-white mb-8 flex items-center gap-3">
+                        <span class="text-blue-500">/</span> 興趣愛好
+                    </h3>
+                    <div class="grid gap-4">
+                        <!-- 空手道項目 -->
+                        <div class="glass-card p-6 flex items-center gap-6 group hover:bg-red-500/10 hover:border-red-500/30 transition">
+                            <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-500 text-2xl group-hover:scale-110 transition">
+                                🥋
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">空手道 Karate</h4>
+                                <p class="text-slate-500 text-xs">修練武道不僅是體能挑戰，更是意志的磨練與自律的實踐。</p>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 flex items-center gap-6 group hover:bg-blue-500/10 hover:border-blue-500/30 transition">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 text-2xl group-hover:scale-110 transition">
+                                🏀
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">球類運動</h4>
+                                <p class="text-slate-500 text-xs">熱愛籃球，享受場上團隊競爭與合作的快感。</p>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 flex items-center gap-6 group hover:bg-purple-500/10 hover:border-purple-500/30 transition">
+                            <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-purple-400 text-2xl group-hover:scale-110 transition">
+                                🎨
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">藝術繪畫</h4>
+                                <p class="text-slate-500 text-xs">藉由繪畫抒發感受，將生活靈感轉化為視覺圖像。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- 頁面 2: 測驗結果 (何倫碼雷達圖) -->
+        <!-- 頁面 2: 測驗結果 (何倫碼雷達圖) - 恢復詳細版 -->
         <section id="test" class="page-content">
             <h2 class="text-4xl font-black text-white mb-4">測驗結果分析</h2>
             <p class="text-blue-500 font-bold mono text-sm mb-12 uppercase tracking-widest">// Holland Code: C x A</p>
@@ -192,7 +275,7 @@
             </div>
         </section>
 
-        <!-- 頁面 3: MIS 工作分析 -->
+        <!-- 頁面 3: MIS 工作分析 - 恢復詳細版 -->
         <section id="mis" class="page-content">
             <h2 class="text-4xl font-black text-white mb-12">MIS 工作分析 <span class="text-blue-500 text-2xl font-light ml-4">Analysis</span></h2>
             <div class="glass-card p-10 mb-10">
@@ -216,7 +299,7 @@
             </div>
         </section>
 
-        <!-- 頁面 4: 相關工作介紹 -->
+        <!-- 頁面 4: 相關工作介紹 - 恢復詳細版 -->
         <section id="jobs" class="page-content">
             <h2 class="text-4xl font-black text-white mb-6">相關工作推薦</h2>
             <p class="text-blue-500 font-bold mono text-sm mb-12 uppercase tracking-widest">// Career Opportunities & Requirements</p>
@@ -268,9 +351,7 @@
                         </div>
                         <div class="text-left md:text-right">
                             <p class="text-slate-500 text-xs uppercase tracking-widest mb-1">先勁健康科技股份有限公司</p>
-                            <p class="text-white font-bold">
-                            
-                            醫療健康資訊業、電腦軟體服務業</p>
+                            <p class="text-white font-bold">醫療健康資訊業、電腦軟體服務業</p>
                         </div>
                     </div>
                     
