@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>黃盈箏 | 個人職能診斷與品牌 Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- 背景特效 -->
+  <div class="bg-layer bg-grid"></div>
+  <div class="bg-layer orb orb-a"></div>
+  <div class="bg-layer orb orb-b"></div>
+  <div class="bg-layer orb orb-c"></div>
+  <div class="cursor-light" id="cursorLight"></div>
+
+  <!-- Mobile Topbar -->
+  <header class="mobile-topbar">
+    <div class="mobile-brand">HUANG<span>YZ</span></div>
+    <button class="menu-btn" id="menuBtn" aria-label="開啟選單">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand-wrap">
+      <div class="brand">HUANG<span>YZ</span></div>
+      <p class="brand-sub">Portfolio / Career Identity</p>
+    </div>
+
+    <nav class="side-nav">
+      <button class="side-link active" data-page="home" onclick="showPage('home')">
+        <span class="side-link-index">01</span>
+        <span>首頁</span>
+      </button>
+      <button class="side-link" data-page="test" onclick="showPage('test')">
+        <span class="side-link-index">02</span>
+        <span>測驗結果</span>
+      </button>
+      <button class="side-link" data-page="mis" onclick="showPage('mis')">
+        <span class="side-link-index">03</span>
+        <span>MIS 工作分析</span>
+      </button>
+      <button class="side-link" data-page="jobs" onclick="showPage('jobs')">
+        <span class="side-link-index">04</span>
+        <span>相關工作</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="mini-card">
+        <div class="mini-label">Holland Code</div>
+        <div class="mini-value">C × A</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-label">學系</div>
+        <div class="mini-value">資管二B</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main-content">
+    <!-- HOME -->
+    <section class="page active" id="page-home">
+      <div class="page-inner">
+        <div class="hero-grid">
+          <section class="panel hero-panel reveal">
+            <div class="eyebrow">411303075 ・ 靜宜大學資訊管理學系二年級</div>
+            <h1 class="hero-title">
+              黃盈箏
+              <span>Huang Ying-Zheng</span>
+            </h1>
+            <p class="hero-text">
+              一名專注於「事務邏輯」與「視覺想像」整合的資管學生。具備事務型（C）的細膩與藝術型（A）的想像力，在規範與創意之間找到自己的定位。
+            </p>
+
+            <div class="chip-row">
+              <span class="chip chip-accent">Holland: C × A</span>
+              <span class="chip">事務型</span>
+              <span class="chip">藝術型</span>
+              <span class="chip">資訊管理</span>
+            </div>
+
+            <div class="hero-actions">
+              <button class="primary-btn magnetic" onclick="showPage('mis')">查看工作分析</button>
+              <button class="ghost-btn magnetic" onclick="showPage('jobs')">相關工作機會</button>
+            </div>
+          </section>
+
+          <section class="panel visual-panel reveal tilt-card">
+            <div class="visual-glow"></div>
+            <div class="avatar-shell">
+              <img src="https://2026aaaa.vercel.app/avatar.jpg" alt="黃盈箏頭像" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="avatar-fallback" style="display:none;">黃</div>
+            </div>
+            <div class="avatar-meta">
+              <div>
+                <div class="meta-k">學號</div>
+                <div class="meta-v">411303075</div>
+              </div>
+              <div>
+                <div class="meta-k">身份</div>
+                <div class="meta-v">資管二 / Portfolio</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel stats-panel reveal">
+            <div class="stat-box">
+              <div class="stat-num">C×A</div>
+              <div class="stat-label">Holland Code</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">2</div>
+              <div class="stat-label">目標職缺</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">3+</div>
+              <div class="stat-label">精進方向</div>
+            </div>
+          </section>
+        </div>
+
+        <div class="section-head reveal">
+          <p class="section-tag">PERSONAL EXPERIENCE</p>
+          <h2>從武道、團隊，到資訊管理</h2>
+          <p>跨域經驗讓我同時擁有紀律、協作與創造力，也讓我在資管領域中，能以更立體的視角理解問題與設計解法。</p>
+        </div>
+
+        <div class="bento-grid reveal stagger">
+          <article class="panel bento-card">
+            <div class="card-top">
+              <span class="card-kicker">大學時期</span>
+              <span class="card-icon">🥋</span>
+            </div>
+            <h3>空手道社 副社長</h3>
+            <p>積極參與社團運作，負責規劃社團活動與推廣空手道運動，培養領導統籌能力與執行節奏。</p>
+          </article>
+
+          <article class="panel bento-card">
+            <div class="card-top">
+              <span class="card-kicker">國中時期</span>
+              <span class="card-icon">🏀</span>
+            </div>
+            <h3>籃球校隊 &amp; 副班長</h3>
+            <p>曾獲籃球縣長盃第二名；擔任副班長協助班級事務，培養領導力、溝通協調與團隊合作能力。</p>
+          </article>
+
+          <article class="panel bento-card">
+            <div class="card-top">
+              <span class="card-kicker">國小時期</span>
+              <span class="card-icon">🎨</span>
+            </div>
+            <h3>美術專班</h3>
+            <p>從小接受美術專業教育，奠定美學敏銳度與視覺感受力，成為日後藝術型思維的重要基礎。</p>
+          </article>
+        </div>
+
+        <div class="section-head reveal">
+          <p class="section-tag">INTERESTS & PERSONALITY</p>
+          <h2>多元興趣，組成完整的我</h2>
+          <p>從武道到藝術，每一項興趣都對應我性格中的不同面向：紀律、反應、感受、表達與創造。</p>
+        </div>
+
+        <div class="interest-grid reveal stagger">
+          <article class="panel interest-card">
+            <div class="interest-icon">🥋</div>
+            <h3>空手道 Karate</h3>
+            <p>修練武道不只是體能挑戰，也是意志與自律的鍛鍊，幫助我保持沉穩與專注。</p>
+          </article>
+
+          <article class="panel interest-card">
+            <div class="interest-icon">🏀</div>
+            <h3>球類運動</h3>
+            <p>享受競爭與合作的節奏，在團隊互動中培養即時應變能力與協作默契。</p>
+          </article>
+
+          <article class="panel interest-card">
+            <div class="interest-icon">🎨</div>
+            <h3>藝術繪畫</h3>
+            <p>藉由繪畫抒發感受，將生活靈感轉化為視覺語言，是連接感性與理性的橋樑。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEST -->
+    <section class="page" id="page-test">
+      <div class="page-inner">
+        <div class="page-banner reveal">
+          <p class="section-tag">HOLLAND CODE & UCAN</p>
+          <h1>測驗結果分析</h1>
+          <p>透過 UCAN 大學生涯發展資源網及 Holland 職業興趣測驗，更深入理解自己的職能傾向與適職方向。</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="panel reveal">
+            <div class="panel-head">
+              <h2>Holland Code：C × A</h2>
+              <a class="inline-btn" href="https://ucan.moe.edu.tw/" target="_blank">前往 UCAN 測驗</a>
+            </div>
+
+            <div class="radar-wrap">
+              <svg viewBox="0 0 320 280" width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <style>
+                    .rl { fill: none; stroke: rgba(255,255,255,0.16); stroke-width: 1; }
+                    .rl-axis { fill: none; stroke: rgba(255,255,255,0.14); stroke-width: 1; }
+                  </style>
+                </defs>
+                <g transform="translate(160,140)">
+                  <polygon class="rl" points="0,-80 69.3,-40 69.3,40 0,80 -69.3,40 -69.3,-40"/>
+                  <polygon class="rl" points="0,-60 51.96,-30 51.96,30 0,60 -51.96,30 -51.96,-30"/>
+                  <polygon class="rl" points="0,-40 34.64,-20 34.64,20 0,40 -34.64,20 -34.64,-20"/>
+                  <polygon class="rl" points="0,-20 17.32,-10 17.32,10 0,20 -17.32,10 -17.32,-10"/>
+
+                  <line class="rl-axis" x1="0" y1="0" x2="0" y2="-80"/>
+                  <line class="rl-axis" x1="0" y1="0" x2="69.3" y2="-40"/>
+                  <line class="rl-axis" x1="0" y1="0" x2="69.3" y2="40"/>
+                  <line class="rl-axis" x1="0" y1="0" x2="0" y2="80"/>
+                  <line class="rl-axis" x1="0" y1="0" x2="-69.3" y2="40"/>
+                  <line class="rl-axis" x1="0" y1="0" x2="-69.3" y2="-40"/>
+
+                  <polygon
+                    points="0,-70.4 40.5,-19 26.2,28.0 0,62.4 -36.0,26.0 -26.2,-22.8"
+                    fill="rgba(95, 231, 255, 0.18)"
+                    stroke="#63e0ff"
+                    stroke-width="2"
+                    stroke-linejoin="round"/>
+
+                  <circle cx="0" cy="-70.4" r="4" fill="#63e0ff"/>
+                  <circle cx="40.5" cy="-19" r="4" fill="#63e0ff"/>
+                  <circle cx="26.2" cy="28" r="4" fill="#63e0ff"/>
+                  <circle cx="0" cy="62.4" r="4" fill="#ff8fd8"/>
+                  <circle cx="-36" cy="26" r="4" fill="#63e0ff"/>
+                  <circle cx="-26.2" cy="-22.8" r="4" fill="#63e0ff"/>
+
+                  <text x="0" y="-90" text-anchor="middle" font-size="12" fill="#d8f8ff" font-family="Noto Sans TC,sans-serif">C 事務型</text>
+                  <text x="82" y="-36" text-anchor="start" font-size="12" fill="#d8f8ff" font-family="Noto Sans TC,sans-serif">I 研究型</text>
+                  <text x="82" y="48" text-anchor="start" font-size="12" fill="#d8f8ff" font-family="Noto Sans TC,sans-serif">E 企業型</text>
+                  <text x="0" y="100" text-anchor="middle" font-size="12" fill="#ff8fd8" font-family="Noto Sans TC,sans-serif">A 藝術型</text>
+                  <text x="-82" y="48" text-anchor="end" font-size="12" fill="#d8f8ff" font-family="Noto Sans TC,sans-serif">S 社會型</text>
+                  <text x="-82" y="-36" text-anchor="end" font-size="12" fill="#d8f8ff" font-family="Noto Sans TC,sans-serif">R 實用型</text>
+                </g>
+              </svg>
+            </div>
+            <p class="note-text">※ 圖表數值依據 Holland 職業興趣測驗結果示意呈現</p>
+          </article>
+
+          <article class="panel reveal">
+            <h2>測驗結果深度分析</h2>
+            <div class="quote-box">
+              「個性謹慎，認真負責，同時也具有感性和想像力。」—— Holland C×A 人格特質核心描述
+            </div>
+
+            <h4>C 型（事務型）特質解析</h4>
+            <p>事務型（Conventional）在本次測驗中呈現最高分，代表我在處理資訊、文書與系統流程方面具備天生的親近感。C 型人格擅長按照既有規範工作，對細節格外敏感，能在結構化環境下發揮最佳效能。</p>
+
+            <h4>A 型（藝術型）特質解析</h4>
+            <p>藝術型（Artistic）為次高分，反映了我自幼接受美術教育的背景所累積的感性能量。A 型特質讓我在面對使用者介面設計、視覺溝通時，能跳脫純功能思維，加入更多人性化考量。</p>
+
+            <h4>C×A 組合的職涯優勢</h4>
+            <ul class="feature-list">
+              <li>能同時處理結構化資料與創意性視覺問題</li>
+              <li>可在技術需求與視覺呈現之間扮演橋樑角色</li>
+              <li>對系統 UI/UX 的設計邏輯有良好理解</li>
+              <li>細心謹慎有助於降低系統與程式錯誤率</li>
+              <li>豐富想像力能更貼近使用者真實痛點</li>
+            </ul>
+          </article>
+        </div>
+
+        <article class="panel reveal">
+          <h2>各維度分佈（估算）</h2>
+          <div class="bar-list">
+            <div class="bar-item">
+              <div class="bar-head"><span>C 事務型</span><span>88%</span></div>
+              <div class="bar-track"><div class="bar-fill cyan" style="width:88%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head"><span>A 藝術型</span><span>76%</span></div>
+              <div class="bar-track"><div class="bar-fill pink" style="width:76%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head"><span>S 社會型</span><span>52%</span></div>
+              <div class="bar-track"><div class="bar-fill cyan" style="width:52%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head"><span>I 研究型</span><span>45%</span></div>
+              <div class="bar-track"><div class="bar-fill cyan" style="width:45%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head"><span>E 企業型</span><span>38%</span></div>
+              <div class="bar-track"><div class="bar-fill violet" style="width:38%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head"><span>R 實用型</span><span>30%</span></div>
+              <div class="bar-track"><div class="bar-fill violet" style="width:30%"></div></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel reveal">
+          <div class="panel-head">
+            <h2>UCAN 職能測驗補充說明</h2>
+            <a class="inline-btn" href="https://ucan.moe.edu.tw" target="_blank">前往 UCAN</a>
+          </div>
+          <p>除了 Holland 職業興趣測驗之外，UCAN（大學生涯發展資源網）也提供更全面的職能評估工具，包含工作價值觀、職業興趣探索與核心職能診斷等模組，幫助大學生更系統化地認識自己的職涯方向。</p>
+          <p>依據 UCAN 的職能分析框架，我的核心能力強項包含：資訊科技應用、問題解決與分析，以及美感與設計思維，這與 Holland C×A 的結果高度吻合，也進一步確認我在 MIS 相關職位的適配性。</p>
+
+          <div class="chip-row">
+            <span class="chip chip-accent">資訊科技應用</span>
+            <span class="chip">問題分析解決</span>
+            <span class="chip">美感設計思維</span>
+            <span class="chip">細節執行力</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- MIS -->
+    <section class="page" id="page-mis">
+      <div class="page-inner">
+        <div class="page-banner reveal">
+          <p class="section-tag">MIS SUITABILITY ANALYSIS</p>
+          <h1>自傳、適職性與未來精進</h1>
+          <p>結合 Holland C×A 人格特質，深入分析我與 MIS 職場的適配程度，並整理出具體的能力成長路徑。</p>
+        </div>
+
+        <article class="panel reveal">
+          <h2>自傳 Autobiography</h2>
+          <p>我叫黃盈箏，就讀靜宜大學資訊管理學系二年級，學號 411303075。從小在美術專班接受視覺藝術訓練，讓我比一般同學更早建立起對「視覺語言」的敏感度；而國中時期擔任副班長、高中加入空手道社並升任副社長的經歷，則讓我學會如何在規範框架內有效地組織與協調資源。</p>
+          <p>進入資管系之後，我發現這個領域恰好是我兩種特質的交會點——既需要邏輯嚴謹的系統思維（C 型），也需要能站在使用者角度思考的感性設計能力（A 型）。資料庫設計、系統分析、網頁開發等課程，讓我逐步找到學習節奏與熱情。</p>
+          <p>目前我最感興趣的方向是 MIS（資訊系統管理）與前端開發的交叉領域——設計並維護一套既美觀又穩定的企業資訊系統，對我而言是一種將「細膩」與「創意」融合的理想工作型態。我相信一個好的系統不只要能跑起來，更要能讓使用者用得舒服。</p>
+        </article>
+
+        <div class="grid-2">
+          <article class="panel reveal">
+            <h2>適職性分析</h2>
+            <div class="quote-box">
+              以 Holland C×A 特質對照 MIS 職場需求，整體適配度高——細膩的事務執行力，加上感性的設計思維，正是現代資訊人才的重要優勢。
+            </div>
+
+            <h4>核心優勢對接</h4>
+            <ul class="feature-list">
+              <li>C 型系統化思維 → 對應 MIS 的系統維運、故障排除、文件管理</li>
+              <li>A 型視覺敏感度 → 對應前端開發中的 UI/UX 設計與體驗優化</li>
+              <li>美術專班背景 → 在企業網站設計與資訊呈現上具優勢</li>
+              <li>空手道社副社長經歷 → 培養專案管理與跨部門協作能力</li>
+              <li>籃球校隊經驗 → 有助於團隊合作與敏捷開發節奏適應</li>
+            </ul>
+          </article>
+
+          <article class="panel reveal">
+            <h2>現階段待強化面向</h2>
+            <p>雖然我在視覺設計與系統操作方面具備一定基礎，但在「網路規劃」與「資安策略」兩個方向上，目前仍停留在概念理解階段，缺乏實際操作經驗。</p>
+            <p>另外，企業型特質相對薄弱，也代表在面對客戶需求訪談、跨部門提案或簡報溝通時，仍需要持續練習主動表達與溝通說服。</p>
+
+            <div class="chip-row">
+              <span class="chip">網路規劃</span>
+              <span class="chip">資安策略</span>
+              <span class="chip">簡報表達</span>
+              <span class="chip">主動溝通</span>
+            </div>
+
+            <div class="quote-box alt">
+              「弱點不是終點，而是下一個努力的起點。」
+            </div>
+          </article>
+        </div>
+
+        <article class="panel reveal">
+          <h2>未來精進計畫 Development Roadmap</h2>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-time">大二下 — 2025 年下半</div>
+              <h3>前端技術基礎鞏固</h3>
+              <p>深化 HTML5 / CSS3 / JavaScript 技術，完成靜態網站作品集；修習使用者介面設計相關課程，系統化學習 Figma 的 Wireframe 與 Prototype 流程。</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-time">大三上 — 2025 年底至 2026 年初</div>
+              <h3>網路與系統能力提升</h3>
+              <p>修習計算機網路與作業系統課程，建立 TCP/IP、DNS、DHCP 等基礎概念；嘗試於個人電腦搭建 Linux 虛擬環境並練習 Shell Script。</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-time">大三下 — 2026 年上半</div>
+              <h3>資安概念與認證準備</h3>
+              <p>修習資訊安全管理課程，建立防火牆策略、資料加密與存取控制等觀念；參與校內或線上的 CTF 練習，強化實戰敏感度。</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-time">大四 — 2026 年下半起</div>
+              <h3>實習與產學接軌</h3>
+              <p>積極申請 MIS 或前端開發相關實習職位，把在校所學技術應用於真實企業情境，同時鍛鍊客戶溝通與跨部門協作能力。</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-time">持續進行 — 課外充實</div>
+              <h3>社群與自主學習</h3>
+              <p>參加 Hackathon、程式競賽與技術研討會，拓展人脈；定期更新 GitHub 作品集，建立個人技術品牌形象。</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- JOBS -->
+    <section class="page" id="page-jobs">
+      <div class="page-inner">
+        <div class="page-banner reveal">
+          <p class="section-tag">CAREER MATCHING</p>
+          <h1>相關工作推薦</h1>
+          <p>根據 Holland C×A 特質，篩選最適合的職缺方向，兼顧事務型的執行力與藝術型的設計感。</p>
+        </div>
+
+        <article class="panel job-panel reveal">
+          <div class="job-badge cyan-badge">C × A 雙特質對接</div>
+          <h2>前端工程師 / 網頁 UI 設計</h2>
+          <div class="job-sub">Frontend Developer &amp; UI Designer</div>
+          <div class="job-company">昇晉整合服務有限公司</div>
+          <div class="job-industry">電腦系統整合服務業、資訊服務業</div>
+
+          <h4>職務內容描述</h4>
+          <ul class="feature-list">
+            <li>負責網站開發及維護，設計與優化網頁使用者介面</li>
+            <li>與後端團隊合作，參與需求規劃與設計稿落地</li>
+            <li>善用 AI 工具輔助開發，提高效率並關注前端趨勢</li>
+          </ul>
+
+          <h4>工作需求技能</h4>
+          <div class="chip-row">
+            <span class="chip">HTML5 / CSS3</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Tailwind CSS</span>
+            <span class="chip">Figma</span>
+          </div>
+
+          <div class="quote-box">
+            A 型藝術特質對應 UI 設計需求，C 型事務特質則有助於程式碼品質與細節精準度。這是 C×A 型人格非常適合發揮的職位。
+          </div>
+
+          <a class="primary-btn inline-link" href="https://www.104.com.tw/job/7l4j9?jobsource=index_s" target="_blank">104 工作職缺連結</a>
+        </article>
+
+        <article class="panel job-panel reveal">
+          <div class="job-badge pink-badge">C 事務型 強烈對接</div>
+          <h2>資訊系統維運工程師</h2>
+          <div class="job-sub">IT System Operation Specialist</div>
+          <div class="job-company">先勁健康科技股份有限公司</div>
+          <div class="job-industry">醫療健康資訊業、電腦軟體服務業</div>
+
+          <h4>職務內容描述</h4>
+          <ul class="feature-list">
+            <li>負責資訊系統軟硬體安裝、維護與故障排除</li>
+            <li>執行環境建置、調整與更新，管理伺服器與網路設備</li>
+            <li>支援客戶現場技術問題排除，需具備良好溝通與抗壓性</li>
+          </ul>
+
+          <h4>工作需求技能</h4>
+          <div class="chip-row">
+            <span class="chip">Linux / Win Server</span>
+            <span class="chip">TCP/IP</span>
+            <span class="chip">Shell Scripting</span>
+            <span class="chip">VMware</span>
+          </div>
+
+          <div class="quote-box alt">
+            C 型事務特質高度對應維運工作的嚴謹與系統化需求，重複性高精度的安裝與排障流程，正是 C 型人格能穩定發揮的場域。
+          </div>
+
+          <a class="primary-btn inline-link" href="https://www.104.com.tw/job/44mz6?jobsource=joblist_search" target="_blank">104 工作職缺連結</a>
+        </article>
+
+        <article class="panel reveal">
+          <h2>兩條職涯路徑比較</h2>
+
+          <div class="table-wrap">
+            <table class="compare-table">
+              <thead>
+                <tr>
+                  <th>面向</th>
+                  <th>前端 / UI 設計</th>
+                  <th>系統維運工程師</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>主要工作類型</td>
+                  <td>視覺設計 + 程式開發</td>
+                  <td>系統管理 + 技術支援</td>
+                </tr>
+                <tr>
+                  <td>人格特質對應</td>
+                  <td>C + A 雙重對接</td>
+                  <td>C 型為主</td>
+                </tr>
+                <tr>
+                  <td>技術學習曲線</td>
+                  <td>前端框架持續更新</td>
+                  <td>網路 + 伺服器基礎</td>
+                </tr>
+                <tr>
+                  <td>創意發揮空間</td>
+                  <td>高（設計自由度大）</td>
+                  <td>低（依流程規範）</td>
+                </tr>
+                <tr>
+                  <td>建議優先順序</td>
+                  <td>★★★★★ 首選</td>
+                  <td>★★★★ 次選</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
